@@ -163,3 +163,154 @@ function unquarantine() {
 		xattr -r -d "$attribute" "$@"
 	done
 }
+
+# ---------------------------------------------------
+# Personnal functions
+
+tag_release()
+{
+    local projectName="$1"
+    local tagName="$2" 
+    local previousTagName="$3"
+    # || "release_RC-12Q4-S13_01.02"
+
+    local svnRootLegacy="https://svn-c.internal.canoe.com/svn/projects/rc/"
+    local svnRootRefonte="https://vc.in.canoe.com/svn/projects/rc/"
+    
+    local trunkUrl= "{$svnRootRefonte}website/trunk"
+    local tagUrl=""
+
+    local deployRoot="https://apps.internal.canoe.com/"
+
+	case $projectName in
+    	"rcr_admin")
+            
+			$tagUrl="{$svnRootRefonte}admin/tags/{$tagName}"
+			$pTagUrl= "{$svnRootRefonte}admin/tags/{$previousTagName}"
+			$deployUrl="{$deployRoot}rcr_admin/staging/deployment/new/"
+            echo "create tag for rcr_admin"
+			;;
+		"rcr")
+			
+			trunkUrl= $svnRootRefonte"website/trunk"
+			tagUrl=$svnRootRefonte"website/tags/"$tagName
+			pTagUrl=$svnRootRefonte"website/tags/"$previousTagName
+			deployUrl=$deployRoot"rcr/staging/deployment/new/"
+            echo "create tag for rcr"
+			;;
+		"rc_admin")
+			$tagUrl= $svnRootLegacy"admin/tags/"$tagName
+			$pTagUrl= $svnRootLegacy"admin/tags/"$previousTagName
+			$deployUrl= $deployRoot"rc_admin/staging/deployment/new/"
+			;;
+		"rc_ecom")
+			$tagUrl= $svnRootLegacy"ecom/tags/"$tagName
+			$pTagUrl= $svnRootLegacy"ecom/tags/"$previousTagName
+			;;
+		"rc_rest")
+			$tagUrl= $svnRootLegacy"rest/tags/"$tagName
+			$pTagUrl= $svnRootLegacy"rest/tags/"$previousTagName
+			;;
+		"rc_frontend")
+                	$tagUrl= $svnRootLegacy"frontend/tags/"$tagName
+			$pTagUrl= $svnRootLegacy"frontend/tags/"$previousTagName
+			$deployUrl= $deployRoot"rc/staging/deployment/new/"
+			;;
+		"rc")
+			trunkUrl= $svnRootLegacy"frontend/trunk"
+			tagUrl= $svnRootLegacy"frontend/tags/"$tagName
+			pTagUrl= $svnRootLegacy"frontend/tags/"$previousTagName
+			deployUrl= $deployRoot"rc/staging/deployment/new/?application_id=15&ctx=staging&version="$tagName"&ACTION=Send"
+			;;
+		*)
+			trunkUrl= $svnRootRefonte"frontend/trunk"
+			tagUrl= $svnRootRefonte"website/tags"$tagName
+			pTagUrl= $svnRootLegacy"website/tags/"$previousTagName
+			deployUrl= $deployRoot"rc/staging/deployment/new/?application_id=15&ctx=staging&version="$tagName"&ACTION=Send"
+			;;
+	esac
+	
+	if [ ! -z $previousTagName ]
+	  then
+		echo "previous Tag is not null"
+		revision=$(get_repo_revision $pTagUrl)
+		echo "revision = $revision"
+		export_release_svn_report $tagName $revison
+	else
+		echo "previous Tag is null"
+		export_release_svn_report $tagName
+	fi
+
+	echo "create tag $tagName head:$revision from $trunkUrl to $tagUrl"
+	# svn copy SRC $tagUrl -m "Creating tag $tagName head:$revision from $trunkUrl to $tagUrl"
+	
+	if [ ! -z $deployUrl ]
+	  then
+		echo "open browser to deploy"
+		# xdg-open $deployUrl
+	fi 
+}
+
+export_release_svn_report()
+{
+    if [ -z "$2" ]
+      then
+	grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html
+    else
+	grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html
+    fi
+}
+
+svn_report()
+{
+    if [ -z "$1" ]
+      then
+         grc --conf=conf.svn svn log -vl 20
+    else
+         grc --conf=conf.svn svn log -vr head:$1
+    fi
+}
+
+
+get_repo_revision(){
+    local url=$1
+    eval "svn info $url | grep Revision | awk '{print $2}'"
+    # echo $revision
+}
+
+copy_and_mkdir()
+{
+    local src=$1
+    local target=$2
+
+    if [ ! -d `dirname $target` ]
+    then
+        mkdir -m 755 -p $(dirname $target)
+    fi
+    cp -vRfp $src $target
+
+    # exit 0
+}
+
+sym-refresh(){
+    proj_root=$1
+    if [ ! -d `dirname $proj_root` ]
+    then
+        $proj_root="."
+    fi
+
+    cd $proj_root
+    app/console cache:clear
+    sudo chmod -Rv 777 app/cache
+    sudo chown dev1:dev1 -Rv app/cache
+    sudo chmod -Rv 777 app/logs
+    sudo chown dev1:dev1 -Rv app/logs
+    # rm -rv ./web/static/css/
+    # rm -rv ./web/static/js/
+    # mkdir -v web/static/css
+    # mkdir -v web/static/js
+    sudo chown dev1:dev1 -Rv web/static
+    sudo chmod 777 -Rv web/static
+    # sudo php app/console assetic:dump --env=dev --no-debug
+}
+

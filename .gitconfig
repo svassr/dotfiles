@@ -77,4 +77,4 @@
 	insteadOf = "gist:"
 
 [push]
-	default = simple
+	default = matching # was simple but incompatible with this version of git

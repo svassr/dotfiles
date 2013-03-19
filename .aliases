@@ -130,3 +130,20 @@ done
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+# svassr personal aliases
+
+# navigation
+alias www="cd /var/www"
+alias projects="cd ~/Projects"
+alias sites="cd ~/sites"
+
+# dev
+alias phpcs-symfony2="phpcs --config-set default_standard Symfony2"
+alias compass="/var/lib/gems/1.8/bin/compass"
+alias ansi2html="/home/dev1/library/bash/pixelb/scripts/scripts/ansi2html.sh" 
+alias ansi_colours="/home/dev1/library/bash/pixelb/scripts/scripts/ansi_colours.sh"
+alias release_report="export_release_svn_report"
+
+alias cpr="copy_and_mkdir"
+alias ll="ls -l --all"
