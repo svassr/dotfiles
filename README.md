@@ -1,4 +1,4 @@
-# Mathias’s dotfiles
+# Stephane's dotfiles (forked from Mathias’s dotfiles)
 
 ## Installation
 
