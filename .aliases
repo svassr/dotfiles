@@ -161,3 +161,12 @@ svnci="svnc ci"
 alias cpr="copy_and_mkdir"
 alias ll="ls -l --all"
 
+# alias ll='ls -la --color=auto'
+alias df='df -lh'
+alias rm="rm -i"
+alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
+alias ports='netstat -nape --inet'
+alias hm="history | more"
+alias gi="grep -i"
+alias tailf='grc tail -f'
+
