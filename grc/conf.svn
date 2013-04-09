@@ -1,0 +1,91 @@
+# this configuration file is suitable for displaying kernel log files
+
+# display this line in yellow and stop further processing
+regexp=.*last message repeated \d+ times$
+colours=yellow
+count=stop
+======
+# this is date
+regexp=(\d| )\d \d\d:\d\d:\d\d(\s[\w\d]+?\s)
+colours=blue, blue, red
+count=once
+======
+# everything in parentheses
+# regexp=\(.+?\)
+# colours=green
+# count=more
+# ======
+# is diff new line 
+regexp=^(\+.*)$
+colours=green
+count=more
+======
+# Diff previous version
+regexp=^(\-.*)$
+colours=red
+count=more
+======
+# Diff line index
+regexp=^(\@.*\@)$
+colours=blue
+count=more
+======
+# Diff file Index or separator
+regexp=^(Index\:.*)$
+colours=bold black
+count=more
+======
+# Diff file Index or separator
+regexp=^\={4,}$
+colours=bold black
+count=more
+======
+# everything in `'
+regexp=\`.+?\'
+colours=bold yellow
+count=more
+======
+# this is probably a pathname
+regexp=/[\w/\.\-]+
+colours=bold black
+count=more
+======
+# name of process and pid
+regexp=([\w/\.\-]+)(\[\d+?\])
+colours=bold blue, bold red
+count=more
+======
+# ip number
+regexp=\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+colours=bold magenta
+count=more
+=====
+# revision number
+regexp=^r\d+
+colours=blue
+count=more
+======
+# status
+regexp=^\s*(M?)(A?)(X?)([C-D]?)(\??)\s+
+colours= white, bold yellow, bold green, bold magenta, bold red, blue, white
+count=more
+======
+# branch name
+regexp=RC-Q\d+\-S\d+
+colours=bold magenta
+count=more
+======
+# JIRA story ID
+regexp=RC-\d+
+colours=bold cyan
+count=more
+======
+# username stephane.vasseur
+regexp=\s?(stephane\.vasseur|svasseur)?(ricardo\.renteria|rrenteria)?(vincent\.arnaud|varnaud)?(lucas\.milin|lmilin)?(mathieu\.veilleux|mveilleux)?\s
+colours=white, bold green, bold black, bold yellow, bold red, bold magenta, white
+count=more
+# =====
+# comment
+# regexp=\/[\/\*][\s\w/\.]+[\n]
+# colours=white
+# count=more
