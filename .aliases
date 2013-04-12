@@ -169,4 +169,6 @@ alias ports='netstat -nape --inet'
 alias hm="history | more"
 alias gi="grep -i"
 alias tailf='grc tail -f'
+alias hgrep='history | grep '
+alias llog='sudo -i locate /var/log/apache2/'
 
