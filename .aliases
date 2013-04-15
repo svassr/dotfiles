@@ -159,7 +159,7 @@ svnci="svnc ci"
 
 # misc
 alias cpr="copy_and_mkdir"
-alias ll="ls -l --all"
+alias ll="ls -laGX"
 
 # alias ll='ls -la --color=auto'
 alias df='df -lh'
