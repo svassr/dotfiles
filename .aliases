@@ -151,15 +151,29 @@ if man svn > 0; then
 else
 	alias svnc="svn"
 fi
-svndiff="svnc diff"
-svnlog="svnc log --stop-on-copy -v"
-svnstatus="svnc status"
-svncommit="svnc ci"
-svnci="svnc ci"
+alias svndiff="svnc diff"
+alias svndi="svnc diff"
+alias svnlog="svnc log --stop-on-copy -v"
+alias svnstatus="svnc status"
+alias svnst="svnc status"
+alias svnstat="svnc status"
+
+alias svncommit="svn ci"
+alias svnci="svn ci"
+
+alias svnup="svn up"
+function svnadd(){
+  svn add "$@";
+  svn ci "$@" -m 'ajout d un nouveau fichier : "$@" ';
+}
+function svndel(){
+  svn del "$@";
+  svn ci "$@" -m 'suppresion d une fichier inutilise : "$@" '
+}
 
 # misc
 alias cpr="copy_and_mkdir"
-alias ll="ls -laGX"
+alias ll="ls -la --group-directories-first"
 
 # alias ll='ls -la --color=auto'
 alias df='df -lh'
