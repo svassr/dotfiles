@@ -263,6 +263,7 @@ export_release_svn_report()
 
 svn_report()
 {
+    # depends on grc svn.conf
     if [ -z "$1" ]
       then
          grc --conf=conf.svn svn log -vl 20
@@ -292,6 +293,7 @@ copy_and_mkdir()
     # exit 0
 }
 
+# Symfony2 project Harcore cache clearing
 sym-refresh(){
     proj_root=$1
     if [ ! -d `dirname $proj_root` ]
@@ -313,4 +315,113 @@ sym-refresh(){
     sudo chmod 777 -Rv web/static
     # sudo php app/console assetic:dump --env=dev --no-debug
 }
+
+
+
+function hgrep {
+   history | grep $1 
+}
+
+function openMateProject { mate //Users//stephanevasseur//Sites//$1//DEV/; }
+
+function ursync {
+        if ($1=="BLACKBOX") then
+             rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/;
+        else
+             echo $1;
+             # rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/
+        fi
+}
+
+function start_pharmapar { 
+	sites;
+	cd pharmapar/DEV/pharmapar
+	mate .
+	bin/django syncdb;
+	bin/django migrate;
+	bin/django loadata page;
+	bin/django runserver;
+}
+
+function colorpicker {
+	# Show all the colours of the rainbow, should be run under bash
+	for STYLE in 0 1 2 3 4 5 6 7; do
+	  for FG in 30 31 32 33 34 35 36 37; do
+	    for BG in 40 41 42 43 44 45 46 47; do
+	      CTRL="\033[${STYLE};${FG};${BG}m"
+	      echo -en "${CTRL}"
+	      echo -n "${STYLE};${FG};${BG}"
+	      echo -en "\033[0m"
+	    done
+	    echo ""
+	  done
+	  echo ""
+	done
+	# Reset
+	echo -e "\033[0m"
+}
+
+# PYTHON PROJECT
+function setup_python_mysqldb(){
+  # cd /opt/local/var/run/mysql5/
+  # cd MySQL-python-1.2.3
+  DIRECTORY=$1
+  # python setup.py install
+  # sudo port install MySQL-python
+  sudo port install MySQLDb
+  sudo ln -s /usr/local/mysql/bin/* /usr/bin
+  cd ${DIRECTORY}
+  python setup.py install
+  # which mysql_config5
+  sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /opt/local/var/run/mysql5/mysql.sock
+  sudo ln -s /opt/local/bin/mysql_config5 /opt/local/bin/mysql_config
+  python setup.py install
+  echo "tcheck mysql is running"
+  sudo /opt/local/share/mysql5/mysql/mysql.server start
+  sudo mysqladmin5 -u root -p ping
+}
+
+# RUBY / RAILS ENVIRONMENT
+
+# sudo ln -s /usr/bin/gem1.8   /usr/bin/gem
+# sudo ln -s /usr/bin/gem1.8.8 /usr/bin/gem
+
+
+# /etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# are we an interactive shell?
+# if [ "$PS1" ]; then
+#     if [ -x /usr/bin/tput ]; then
+#       if [ "x`tput kbs`" != "x" ]; then 
+# 	# We can't do this with "dumb" terminal
+#         stty erase `tput kbs`
+#       elif [ -x /usr/bin/wc ]; then
+#         if [ "`tput kbs|wc -c `" -gt 0 ]; then 
+# 	# We can't do this with "dumb" terminal
+#           stty erase `tput kbs`
+#         fi
+#       fi
+#     fi
+#     case $TERM in
+# 	xterm*)
+# 	    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+# 	    ;;
+# 	*)
+# 	    ;;
+#     esac
+#     [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\h \W]\\$ "
+#     
+#     if [ "x$SHLVL" != "x1" ]; then # We're not a login shell
+#         for i in /etc/profile.d/*.sh; do
+# 	    if [ -x $i ]; then
+# 	        . $i
+# 	    fi
+# 	done
+#     fi
+# fi
+
+
 

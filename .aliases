@@ -140,7 +140,7 @@ alias sites="cd ~/sites"
 
 # dev
 alias phpcs-symfony2="phpcs --config-set default_standard Symfony2"
-alias compass="/var/lib/gems/1.8/bin/compass"
+# alias compass="/var/lib/gems/1.8/bin/compass"
 alias ansi2html="/home/dev1/library/bash/pixelb/scripts/scripts/ansi2html.sh" 
 alias ansi_colours="/home/dev1/library/bash/pixelb/scripts/scripts/ansi_colours.sh"
 alias release_report="export_release_svn_report"
@@ -151,11 +151,11 @@ if man svn > 0; then
 else
 	alias svnc="svn"
 fi
-svndiff="svnc diff"
-svnlog="svnc log --stop-on-copy -v"
-svnstatus="svnc status"
-svncommit="svnc ci"
-svnci="svnc ci"
+alias svndiff="svnc diff"
+alias svnlog="svnc log --stop-on-copy -v"
+alias svnstatus="svnc status"
+alias svncommit="svnc ci"
+alias svnci="svnc ci"
 
 # misc
 alias cpr="copy_and_mkdir"
@@ -169,4 +169,17 @@ alias ports='netstat -nape --inet'
 alias hm="history | more"
 alias gi="grep -i"
 alias tailf='grc tail -f'
+
+
+# export SVN_EDITOR="vim"
+# export PYTHONPATH=/Applications/MAMP/Library/bin:$PYTHONPATH 
+alias ll="ls -laG"
+alias sites="cd /Users/stephanevasseur/Sites/"
+alias matep="mate /Users/stephanevasseur/Sites/\!^"
+alias wget="/usr/local/bin/wget"
+alias ql="qlmanage -p"
+alias mproj="openMateProject \!*"
+# alias mysql_config="/Applications/MAMP/Library/bin/mysql_config"
+alias update_blackbox="rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/"
+alias pharmaStart="start_pharmapar"
 
