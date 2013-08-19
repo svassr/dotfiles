@@ -27,7 +27,7 @@ count=more
 ======
 # Diff line index
 regexp=^(\@.*\@)$
-colours=blue
+colours=cyan
 count=more
 ======
 # Diff file Index or separator
@@ -67,7 +67,7 @@ count=more
 ======
 # status
 regexp=^\s*(M?)(A?)(X?)([C-D]?)(\??)\s+
-colours= white, bold yellow, bold green, bold magenta, bold red, blue, white
+colours= white, bold yellow, bold green, bold magenta, bold red, bold blue, white
 count=more
 ======
 # branch name
@@ -81,7 +81,7 @@ colours=bold cyan
 count=more
 ======
 # username stephane.vasseur
-regexp=\s?(stephane\.vasseur|svasseur)?(ricardo\.renteria|rrenteria)?(vincent\.arnaud|varnaud)?(lucas\.milin|lmilin)?(mathieu\.veilleux|mveilleux)?\s
+regexp=\s?(stephane\.vasseur|svasseur|stephane.v)?(ricardo\.renteria|rrenteria|ricardo.r)?(vincent\.arnaud|varnaud|vincent.a)?(lucas\.milin|lmilin|lucas.l)?(mathieu\.veilleux|mveilleux|mathieu.v)?(fginioux|frederic\.ginioux|frederic.g)?(jbenoit|jean\.benoit|jean.b)?\s
 colours=white, bold green, bold black, bold yellow, bold red, bold magenta, white
 count=more
 # =====

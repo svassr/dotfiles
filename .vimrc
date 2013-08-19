@@ -94,5 +94,12 @@ if has("autocmd")
 	" Enable file type detection
 	filetype on
 	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+	autocmd BufNewFile,BufRead *.json,*.js.tmp setfiletype json syntax=javascript
 endif
+
+
+au BufRead,BufNewFile *.twig,*.html.twig,*.html.twig.tmp,*.html.tmp set filetype=htmljinja
+au BufRead,BufNewFile *.php.tmp set filetype=php
+au BufRead,BufNewFile *.css.tmp,*.scss.tmp set filetype=css
+au BufRead,BufNewFile *.svn,*.svnlog set filetype=svnlog
+au BufRead,BufNewFile *diff.svn,*.blame.svn,*.svndiff,*.svnblame set filetype=htmljinja
