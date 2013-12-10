@@ -146,11 +146,11 @@ alias ansi_colours="/home/dev1/library/bash/pixelb/scripts/scripts/ansi_colours.
 alias release_report="export_release_svn_report"
 
 # SVN
-if man svn > 0; then
-	alias svnc="grc --conf=conf.svn svn"
-else
+# if grc -help > 0; then
+#	alias svnc="grc --conf=conf.svn svn"
+# else
 	alias svnc="svn"
-fi
+# fi
 alias svnlog="svnc log --stop-on-copy -v"
 alias svnstatus="svnc status"
 alias svnst="svnc status"
