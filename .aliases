@@ -146,11 +146,11 @@ alias ansi_colours="/home/dev1/library/bash/pixelb/scripts/scripts/ansi_colours.
 alias release_report="export_release_svn_report"
 
 # SVN
-if man svn > 0; then
-	alias svnc="grc --conf=conf.svn svn"
-else
+# if grc -help > 0; then
+#	alias svnc="grc --conf=conf.svn svn"
+# else
 	alias svnc="svn"
-fi
+# fi
 alias svnlog="svnc log --stop-on-copy -v"
 alias svnstatus="svnc status"
 alias svnst="svnc status"
@@ -170,11 +170,24 @@ function svndel(){
   svn ci "$@" -m 'suppresion d une fichier inutilise : "$@" '
 }
 
-# misc
-alias cpr="copy_and_mkdir"
-alias ll="ls -la --group-directories-first"
+# GIT
 
-# alias ll='ls -la --color=auto'
+# Undo a `git push`
+alias gco="git checkout"
+alias gcommit='git commit -m'
+alias glog='git log --stat'
+alias gst='git status'
+alias gstat='git status'
+alias gpull='git pull'
+alias gp='git pull'
+alias undopush="git push -f origin HEAD^:master"
+alias gdiff="git diff"
+
+
+# MISC
+alias cpr="copy_and_mkdir"
+alias ll="ls -la --color=auto --group-directories-first"
+# alias ll="ls -laG"
 alias df='df -lh'
 alias rm="rm -i"
 alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
@@ -188,7 +201,7 @@ alias llog='sudo -i locate /var/log/apache2/'
 
 # export SVN_EDITOR="vim"
 # export PYTHONPATH=/Applications/MAMP/Library/bin:$PYTHONPATH 
-alias ll="ls -laG"
+
 alias sites="cd /Users/stephanevasseur/Sites/"
 alias matep="mate /Users/stephanevasseur/Sites/\!^"
 alias wget="/usr/local/bin/wget"
