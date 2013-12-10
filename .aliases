@@ -186,8 +186,8 @@ alias gdiff="git diff"
 
 # MISC
 alias cpr="copy_and_mkdir"
-alias ll="ls -la --color=auto --group-directories-first"
-# alias ll="ls -laG"
+# alias ll="ls -la --color=auto --group-directories-first"
+alias ll="ls -laG"
 alias df='df -lh'
 alias rm="rm -i"
 alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
