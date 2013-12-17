@@ -53,9 +53,7 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-[merge]
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
+
 
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
@@ -78,3 +76,15 @@
 
 [push]
 	default = matching # was simple but incompatible with this version of git
+
+[merge]
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+	tool = intellij
+[mergetool "intellij"]¬
+	cmd = /Applications/IntelliJ\\ IDEA\\ 13\\ CE.app/Contents/MacOS/idea merge $(cd $(dirname \"$LOCAL\") && pwd)/$(basename \"$LOCAL\") $(cd $(dirname \"$REMOTE\") && pwd)/$(basename \"$REMOTE\") $(cd $(dirname \"$BASE\") && pwd)/$(basename \"$BASE\") $(cd $(dirname \"$MERGED\") && pwd)/$(basename \"$MERGED\")¬
+	trustExitCode = false
+# [diff]
+#     tool = intellij
+# [difftool "intellij"]
+#     cmd = /Applications/IntelliJ\\ IDEA\\ 13\\ CE.app/Contents/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
