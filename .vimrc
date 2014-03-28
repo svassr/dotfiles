@@ -1,4 +1,4 @@
-"set syntax highlighting theme"
+"set syntax highlighting theme. Originaly used the molokai theme (originally created for TextMate by Wimer Hazenberg)
 colorscheme monokai
 " Make Vim more useful
 set nocompatible
