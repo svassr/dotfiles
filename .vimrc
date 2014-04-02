@@ -1,3 +1,5 @@
+"set" Pathogen is a plugin which allow to install other plugins at runtime
+execute pathogen#infect()
 "set syntax highlighting theme. Originaly used the molokai theme (originally created for TextMate by Wimer Hazenberg)
 colorscheme monokai
 " Make Vim more useful
@@ -103,3 +105,6 @@ au BufRead,BufNewFile *.php.tmp set filetype=php
 au BufRead,BufNewFile *.css.tmp,*.scss.tmp set filetype=css
 au BufRead,BufNewFile *.svn,*.svnlog set filetype=svnlog
 au BufRead,BufNewFile *diff.svn,*.blame.svn,*.svndiff,*.svnblame set filetype=htmljinja
+
+au InsertLeave * hi Cursor guibg=yellow
+au InsertEnter * hi Cursor guibg=green
