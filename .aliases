@@ -171,6 +171,7 @@ alias release_report="export_release_svn_report"
 # if grc -help > 0; then
 #	alias svnc="grc --conf=conf.svn svn"
 # else
+	alias svn="~/bin/svn-color/svn-color.py"
 	alias svnc="svn"
 # fi
 alias svnlog="svnc log --stop-on-copy -v"
