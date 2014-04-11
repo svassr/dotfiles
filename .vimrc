@@ -43,7 +43,7 @@ syntax on
 " Highlight current line
 set cursorline
 " Make tabs as wide as two spaces
-set tabstop=2
+set tabstop=4
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -76,6 +76,7 @@ if exists("&relativenumber")
 	set relativenumber
 	au BufReadPost * set relativenumber
 endif
+
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -106,5 +107,5 @@ au BufRead,BufNewFile *.css.tmp,*.scss.tmp set filetype=css
 au BufRead,BufNewFile *.svn,*.svnlog set filetype=svnlog
 au BufRead,BufNewFile *diff.svn,*.blame.svn,*.svndiff,*.svnblame set filetype=htmljinja
 
-"au InsertLeave * hi Cursor guibg=yellow
-"au InsertEnter * hi Cursor guibg=green
+au InsertLeave * hi Cursor guibg=yellow
+au InsertEnter * hi Cursor guibg=green
