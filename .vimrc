@@ -34,6 +34,7 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'rking/ag.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
