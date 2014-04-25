@@ -4,8 +4,10 @@ git pull origin master
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" -av --no-perms . ~
-	brew install ctags-exuberant
-	git clone https://github.com/ggreer/the_silver_searcher ~/Downloads/ag && cd ~/Downloads/ag && ./build.sh && sudo make install && cd -
+	sudo brew install ctags-exuberant
+	# install Ag
+	sudo brew install the_silver_searcher
+	# install Vundle
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	source ~/.bash_profile
 	vim +PluginInstall +qall
