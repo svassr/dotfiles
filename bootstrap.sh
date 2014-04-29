@@ -7,7 +7,7 @@ function doIt() {
 	sudo brew install ctags-exuberant
 	# install Ag
 	sudo brew install the_silver_searcher
-	# install Vundle
+	# install Vundle for vim
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	source ~/.bash_profile
 	read -p "Would you to install vim plugins ? (y/n) " -n 1
