@@ -7,10 +7,14 @@ function doIt() {
 	sudo brew install ctags-exuberant
 	# install Ag
 	sudo brew install the_silver_searcher
-	# install Vundle
+	# install Vundle for vim
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	source ~/.bash_profile
-	vim +PluginInstall +qall
+	read -p "Would you to install vim plugins ? (y/n) " -n 1
+	echo
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		vim +PluginInstall +qall
+	fi
 }
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt
