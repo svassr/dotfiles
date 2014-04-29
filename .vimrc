@@ -38,6 +38,7 @@ Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'pangloss/vim-javascript'
+Plugin 'airblade/vim-gitgutter'
 
 " Rarely used Plugin
 " Plugin 'tpope/vim-sensible'
