@@ -2,12 +2,12 @@
 cd "$(dirname "${BASH_SOURCE}")"
 git pull origin master
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
-		--exclude "README.md" --exclude "LICENSE-MIT.txt" -av --no-perms . ~
+	rsync --exclude ".git/" --exclude-from="rsync-exclude" -av --no-perms . ~
 	git clone https://github.com/ggreer/the_silver_searcher ~/Downloads/ag && cd ~/Downloads/ag && ./build.sh && sudo make install && cd -
 	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	source ~/.bash_profile
 	vim +PluginInstall +qall
+	source ./apm-install.sh
 }
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt
