@@ -6,7 +6,7 @@ sudo apm install minimap-color-highlight
 sudo apm install minimap-git-diff
 sudo apm install minimap-find-and-replace
 sudo apm install language-ejs
-sudo apm install langugae-ini
+sudo apm install language-ini
 sudo apm install language-sass
 sudo apm install language-less
 sudo apm install language-moustache
