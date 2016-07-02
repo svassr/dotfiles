@@ -12,7 +12,7 @@ $WORKSPACE_PATH/dotfiles/brew.sh
 
 ## Get dotfiles repo and setup symlinks
 git clone https://github.com/svassr/dotfiles.git $WORKSPACE_PATH/dotfiles
-$WORKSPACE_PATH/dotfiles/bootstrap.sh
+$WORKSPACE_PATH/dotfiles/bootstrap.sh --force
 
 $WORKSPACE_PATH/dotfiles/npm.sh
 
@@ -31,7 +31,7 @@ echo "Almost Done. Here are a few apps and tools that require root access. You c
 read -p "Would you like to continue? (y/n) " -n 1
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  $WORKSPACE_PATH/dotfiles/root_apps.sh
+  $WORKSPACE_PATH/dotfiles/root_apps.sh --force
 fi
 
 $WORKSPACE_PATH/dotfiles/.macos
