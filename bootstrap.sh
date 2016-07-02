@@ -15,7 +15,7 @@ function doIt() {
 	source ~/.bash_profile
 }
 
-echo "\n# dotfiles SETUP #";
+echo "# dotfiles SETUP #";
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;
 else

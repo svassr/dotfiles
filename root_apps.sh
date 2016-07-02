@@ -2,12 +2,12 @@
 # Install apps and tools requiring root password
 
 function installVimPlugin() {
-	echo "\n# Installing Vim Plugins #\n";
+	echo "# Installing Vim Plugins #";
 	vim +PluginInstall +qall;
 }
 
 # install Vundle for vim
-echo "\n# Install Vundle #\n";
+echo "# Install Vundle #";
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

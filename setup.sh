@@ -7,7 +7,7 @@ WORKSPACE_DIR="Projects"
 mkdir ~/$WORKSPACE_DIR;
 WORKSPACE_PATH=~/$WORKSPACE_DIR;
 
-echo "Workspace path: $WORKSPACE_PATH \n";
+echo "Workspace path: $WORKSPACE_PATH";
 $WORKSPACE_PATH/dotfiles/brew.sh
 
 ## Get dotfiles repo and setup symlinks

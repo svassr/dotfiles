@@ -1,6 +1,6 @@
 #!/bin/bash
 # npm dependencies that I'm not likely to live without
-echo "\nInstalling Node global library ... \n";
+echo "# Installing Node global library ... ";
 npm install -g nvm
 npm install -g jshint
 npm install -g jsxhint

@@ -1,8 +1,8 @@
 
 # OSX native apps
 
-echo "\n# Installing brew-cask #\n";
-brew install caskroom/cask/brew-cask
+echo "# Installing brew-cask #";
+brew install brew-cask
 
 function brewcask() {
     brew cask install "${@}" 2> /dev/null

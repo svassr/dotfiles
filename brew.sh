@@ -6,7 +6,7 @@ if hash gdate 2>/dev/null; then
   brew --version;
 else
   # brew setup
-  echo "\n# Installing brew # \n";
+  echo "# Installing brew #";
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
