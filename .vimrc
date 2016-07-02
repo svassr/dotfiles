@@ -2,6 +2,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set background=dark
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -111,6 +113,9 @@ if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
 
+" Don’t create backups when editing files in certain directories
+set backupskip=/tmp/*,/private/tmp/*
+
 " Respect modeline in files
 set modeline
 set modelines=4
@@ -179,6 +184,8 @@ if has("autocmd")
 	filetype on
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json,*.js.tmp setfiletype json syntax=javascript
+	" Treat .md files as Markdown
+	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
 
@@ -190,4 +197,3 @@ au BufRead,BufNewFile *diff.svn,*.blame.svn,*.svndiff,*.svnblame set filetype=ht
 
 au InsertLeave * hi Cursor guibg=yellow
 au InsertEnter * hi Cursor guibg=green
-
