@@ -1,3 +1,4 @@
+#!/bin/bash
 # npm dependencies that I'm not likely to live without
 echo "\nInstalling Node global library ... \n";
 npm install -g nvm

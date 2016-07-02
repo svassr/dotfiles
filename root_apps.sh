@@ -1,3 +1,4 @@
+#!/bin/bash
 # Install apps and tools requiring root password
 
 function installVimPlugin() {

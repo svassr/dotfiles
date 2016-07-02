@@ -1,17 +1,22 @@
+#!/bin/bash
 # First Time Mac Setup. Install all basic software and tools
 
-# setup folder structure
-mkdir ~/Projects
+WORKSPACE_DIR="Projects"
 
-~/Projects/dotfiles/brew.sh
+# setup folder structure
+mkdir ~/$WORKSPACE_DIR;
+WORKSPACE_PATH=~/$WORKSPACE_DIR;
+
+echo "Workspace path: $WORKSPACE_PATH \n";
+$WORKSPACE_PATH/dotfiles/brew.sh
 
 ## Get dotfiles repo and setup symlinks
-git clone https://github.com/svassr/dotfiles.git ~/Projects/dotfiles
-~/Projects/dotfiles/bootstrap.sh
+git clone https://github.com/svassr/dotfiles.git $WORKSPACE_PATH/dotfiles
+$WORKSPACE_PATH/dotfiles/bootstrap.sh
 
-./npm.sh
+$WORKSPACE_PATH/dotfiles/npm.sh
 
-./vim.sh
+$WORKSPACE_PATH/dotfiles/vim.sh
 
 # dev-related programs - install rvm
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
@@ -20,13 +25,13 @@ git clone https://github.com/svassr/dotfiles.git ~/Projects/dotfiles
 \curl https://install.meteor.com/ | sh
 
 # install native Apps: Browsers, dev tools and utils
-~/Projects/dotfiles/macos_apps.sh
+$WORKSPACE_PATH/dotfiles/macos_apps.sh
 
 echo "Almost Done. Here are a few apps and tools that require root access. You can also later run ./root_apps.sh";
 read -p "Would you like to continue? (y/n) " -n 1
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  ~/Projects/dotfiles/root_apps.sh
+  $WORKSPACE_PATH/dotfiles/root_apps.sh
 fi
 
-~/Projects/dotfiles/.macos
+$WORKSPACE_PATH/dotfiles/.macos
