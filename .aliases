@@ -187,6 +187,7 @@ function svnadd(){
   svn add "$@";
   svn ci "$@" -m 'ajout d un nouveau fichier : "$@" ';
 }
+
 function svndel(){
   svn del "$@";
   svn ci "$@" -m 'suppresion d une fichier inutilise : "$@" '
@@ -230,3 +231,7 @@ alias ql="qlmanage -p"
 # alias mproj="openMateProject \!*"
 # alias mysql_config="/Applications/MAMP/Library/bin/mysql_config"
 alias update_blackbox="rsync -urv ~/Projects/* /Volumes/BLACKBOX/Projets/;"
+
+function brewcask() {
+    brew cask install "${@}" 2> /dev/null
+}

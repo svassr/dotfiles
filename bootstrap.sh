@@ -12,16 +12,10 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	# install Vundle for vim
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	source ~/.bash_profile
-	read -p "Would you to install vim plugins ? (y/n) " -n 1
-	echo
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		vim +PluginInstall +qall
-	fi
 }
 
+echo "\n# dotfiles SETUP #";
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;
 else

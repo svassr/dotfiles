@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
 # Install command-line tools using Homebrew.
+if hash gdate 2>/dev/null; then
+  echo "brew already installed";
+  brew --version;
+else
+  # brew setup
+  echo "\n# Installing brew # \n";
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -24,7 +32,7 @@ brew install gnu-sed --with-default-names
 # running `chsh`.
 brew install bash
 brew tap homebrew/versions
-brew install bash-completion2
+brew install bash-completion2 # This might conflict with bash-completion if it has been previously installed
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
@@ -34,6 +42,18 @@ fi;
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
+
+# install node
+brew install node
+
+# install mongodb
+brew install mongodb
+
+# Dependencies
+brew install jpeg-turbo
+brew install optipng
+brew install readline
+
 
 # Install RingoJS and Narwhal.
 # Note that the order in which these are installed is important;
@@ -82,6 +102,7 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
+brew install the_silver_searcher
 brew install dark-mode
 #brew install exiv2
 brew install git
@@ -101,6 +122,12 @@ brew install tree
 brew install vbindiff
 brew install webkit2png
 brew install zopfli
+brew install ant
+brew install mercurial
+brew install irssi
+brew install phantomjs
+brew install unrar
+brew install trash
 
 # Remove outdated versions from the cellar.
 brew cleanup
