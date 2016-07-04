@@ -107,7 +107,6 @@ brew install dark-mode
 #brew install exiv2
 brew install git
 brew install git-lfs
-brew install bash-completion
 brew install imagemagick --with-webp
 brew install lua
 brew install lynx
@@ -132,3 +131,7 @@ brew install trash
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# install brew completion
+brew install bash-completion
+brew tap homebrew/completions
