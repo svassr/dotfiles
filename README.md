@@ -6,10 +6,10 @@
 
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
 
-### To start a new setup on fresh macos install:
+### To start a new setup on fresh macos install and install all your applications:
 
 ```shell
-bash -c "`curl -L https://raw.githubusercontent.com/svassr/dotfiles/master/setup.sh`"
+bash -c "`curl -L https://raw.githubusercontent.com/svassr/dotfiles/master/setup_scripts/setup.sh`"
 ```
 
 ### Using Git and the bootstrap script
