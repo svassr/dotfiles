@@ -19,6 +19,7 @@ brewcask firefox
 brewcask opera
 brewcask iterm2
 brewcask sourcetree
+brewcask slack
 
 # utils
 brewcask skype
