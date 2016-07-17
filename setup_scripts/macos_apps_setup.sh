@@ -20,6 +20,7 @@ brewcask opera
 brewcask iterm2
 brewcask sourcetree
 brewcask slack
+brewcask discord
 brewcask gimp
 brewcask sketch
 
