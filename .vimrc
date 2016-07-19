@@ -2,6 +2,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set background=dark
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -25,7 +27,7 @@ Plugin 'L9'
 " Pass the path to set the runtimepath properly.
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
-Plugin 'user/L9', {'name': 'newL9'}
+"Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -35,6 +37,28 @@ Plugin 'rking/ag.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'bling/vim-airline'
+Plugin 'majutsushi/tagbar'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'pangloss/vim-javascript'
+
+" Rarely used Plugin
+" Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-rails'
+" Plugin 'Lokaltog/vim-powerline'
+" Plugin 'kana/vim-textobj-user'
+" Plugin 'nelstrom/vim-textobj-rubyblock'
+" Plugin 'slim-template/vim-slim'
+" Plugin 'edsone/vim-matchit'
+" Plugin 'henrick/vim-indexed-search'
+" Plugin 'lokaltog/vim-easymotion'
+Plugin 'vim-scripts/tComment'
+" Plugin 'tpope/vim-repeat'
+" Plugin 'tpop/vim-abolish'
+" Plugin 'xolox/vim-session'
+" Plugin 'xolox/vim-misc'
+" Plugin 'godlygeek/tabular'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -88,6 +112,9 @@ set directory=~/.vim/swaps
 if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
+
+" Don’t create backups when editing files in certain directories
+set backupskip=/tmp/*,/private/tmp/*
 
 " Respect modeline in files
 set modeline
@@ -157,6 +184,8 @@ if has("autocmd")
 	filetype on
 	" Treat .json files as .js
 	autocmd BufNewFile,BufRead *.json,*.js.tmp setfiletype json syntax=javascript
+	" Treat .md files as Markdown
+	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
 
@@ -168,4 +197,3 @@ au BufRead,BufNewFile *diff.svn,*.blame.svn,*.svndiff,*.svnblame set filetype=ht
 
 au InsertLeave * hi Cursor guibg=yellow
 au InsertEnter * hi Cursor guibg=green
-
