@@ -1,0 +1,19 @@
+apm install atom-beautify
+# apm install autocomplete-html
+apm install editorconfig
+apm install emmet
+apm install caniuse
+apm install file-icons
+apm install git-plus
+apm install javascript-snippets
+apm install language-ejs
+apm install language-ini
+apm install language-javascript-jsx
+apm install merge-conflicts
+apm install minimap
+apm install minimap-find-and-replace
+apm install minimap-git-diff
+apm install mocha
+apm install monokai
+apm install tabs-to-spaces
+apm install webbox-color
