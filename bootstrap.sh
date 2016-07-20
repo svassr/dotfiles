@@ -1,21 +1,28 @@
 #!/usr/bin/env bash
-cd "$(dirname "${BASH_SOURCE}")"
-git pull origin master
+
+cd "$(dirname "${BASH_SOURCE}")";
+
+git pull origin master;
+
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
-		--exclude "README.md" --exclude "LICENSE-MIT.txt" -av --no-perms . ~
-	git clone https://github.com/ggreer/the_silver_searcher ~/Downloads/ag && cd ~/Downloads/ag && ./build.sh && sudo make install && cd -
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	rsync --exclude ".git/" \
+		--exclude ".DS_Store" \
+		--exclude ".osx" \
+		--exclude "bootstrap.sh" \
+		--exclude "README.md" \
+		--exclude "LICENSE-MIT.txt" \
+		-avh --no-perms . ~;
 	source ~/.bash_profile
-	vim +PluginInstall +qall
 }
+
+echo "# dotfiles SETUP #";
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt
+	doIt;
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
-	echo
+	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt
-	fi
-fi
-unset doIt
+		doIt;
+	fi;
+fi;
+unset doIt;
