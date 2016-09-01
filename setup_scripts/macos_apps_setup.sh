@@ -2,7 +2,9 @@
 # OSX native apps
 
 echo "# Installing brew-cask #";
+brew install cask
 brew install brew-cask
+brew install brew-cask-completion
 
 function brewcask() {
     brew cask install "${@}" 2> /dev/null
