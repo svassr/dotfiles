@@ -6,6 +6,7 @@ apm install atom-ternjs
 apm install autocomplete-html-entities
 apm install autocomplete-modules
 apm install autocomplete-php
+apm install babel-react-syntax
 apm install caniuse
 apm install clipboard-plus
 apm install editorconfig
