@@ -35,6 +35,9 @@ apm install monokai
 apm install monokai-dark
 apm install multiple-cursors-clipboard
 apm install quick-editor
+apm install react
+apm install react-es6-snippets
+apm install react-snippets
 apm install split-diff
 apm install tabs-to-spaces
 apm install to-base64
