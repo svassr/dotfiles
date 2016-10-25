@@ -23,6 +23,7 @@ apm install linter
 apm install linter-jshint
 apm install linter-sass-lint
 apm install linter-scss-lint
+apm install lipsum
 apm install material
 apm install material-ui
 apm install merge-conflicts
