@@ -15,5 +15,6 @@ apm install minimap-find-and-replace
 apm install minimap-git-diff
 apm install mocha
 apm install monokai
+apm install sort-lines
 apm install tabs-to-spaces
 apm install webbox-color
