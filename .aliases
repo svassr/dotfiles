@@ -142,11 +142,7 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Reload the shell (i.e. invoke as a login shell)
-<<<<<<< HEAD
 alias reload="exec $SHELL -l"
-
-# Faster npm for europeans
-command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu"
 
 # svassr personal aliases
 
@@ -217,11 +213,6 @@ alias hgrep='history | grep '
 alias llog='sudo -i locate /var/log/apache2/'
 
 
-# export SVN_EDITOR="vim"
-# export PYTHONPATH=/Applications/MAMP/Library/bin:$PYTHONPATH
-
-alias sites="cd ~/Sites/"
-# alias wget="/usr/local/bin/wget"
 alias ql="qlmanage -p"
 # alias mproj="openMateProject \!*"
 # alias mysql_config="/Applications/MAMP/Library/bin/mysql_config"
@@ -230,9 +221,6 @@ alias update_blackbox="rsync -urv ~/Projects/* /Volumes/BLACKBOX/Projets/;"
 function brewcask() {
     brew cask install "${@}" 2> /dev/null
 }
-=======
-alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
->>>>>>> 3fbceb469cc52f021b11f4a0d335c4362366cac4

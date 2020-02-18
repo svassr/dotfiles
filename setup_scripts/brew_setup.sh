@@ -32,12 +32,8 @@ brew install findutils
 brew install gnu-sed --with-default-names
 # Install a modern version of Bash.
 brew install bash
-<<<<<<< HEAD:setup_scripts/brew_setup.sh
 brew tap homebrew/versions
 brew install bash-completion2 # This might conflict with bash-completion if it has been previously installed
-=======
-brew install bash-completion2
->>>>>>> 3fbceb469cc52f021b11f4a0d335c4362366cac4:brew.sh
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
@@ -48,7 +44,6 @@ fi;
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
-<<<<<<< HEAD:setup_scripts/brew_setup.sh
 # install node
 brew install node
 
@@ -66,10 +61,8 @@ brew install readline
 # see http://git.io/brew-narwhal-ringo.
 brew install ringojs
 brew install narwhal
-=======
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
->>>>>>> 3fbceb469cc52f021b11f4a0d335c4362366cac4:brew.sh
 
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
@@ -113,11 +106,6 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
-<<<<<<< HEAD:setup_scripts/brew_setup.sh
-brew install the_silver_searcher
-brew install dark-mode
-=======
->>>>>>> 3fbceb469cc52f021b11f4a0d335c4362366cac4:brew.sh
 #brew install exiv2
 brew install git
 brew install git-lfs
