@@ -27,7 +27,5 @@ brewcask sketch
 # utils
 brewcask skype
 brewcask vlc
-brewcask cleanmymac
-brewcask macpaw-gemini
 brewcask spotify
 
