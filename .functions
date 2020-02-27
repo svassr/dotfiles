@@ -107,6 +107,33 @@ function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer;
 }
 
+# UTF-8-encode a string of Unicode symbols
+function escape() {
+		printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
+
+# Decode \x{ABCD}-style Unicode escape sequences
+function unidecode() {
+		perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
+
+# Get a character’s Unicode code point
+function codepoint() {
+		perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
+
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
@@ -162,6 +189,16 @@ function o() {
 	fi;
 }
 
+# `v` with no arguments opens the current directory in Vim, otherwise opens the
+# given location
+function v() {
+	if [ $# -eq 0 ]; then
+		vim .;
+	else
+		vim "$@";
+	fi;
+}
+
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
@@ -177,22 +214,20 @@ function tre() {
 
 export_release_svn_report()
 {
-    if [ -z "$2" ]
-      then
-	grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html
+    if [ -z "$2" ] then
+		grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html
     else
-	grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html
+		grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html
     fi
 }
 
 svn_report()
 {
     # depends on grc svn.conf
-    if [ -z "$1" ]
-      then
-         grc --conf=conf.svn svn log -vl 20
+    if [ -z "$1" ] then
+        grc --conf=conf.svn svn log -vl 20
     else
-         grc --conf=conf.svn svn log -vr head:$1
+        grc --conf=conf.svn svn log -vr head:$1
     fi
 }
 
@@ -208,8 +243,7 @@ copy_and_mkdir()
     local src=$1
     local target=$2
 
-    if [ ! -d `dirname $target` ]
-    then
+    if [ ! -d `dirname $target` ] then
         mkdir -m 755 -p $(dirname $target)
     fi
     cp -vRfp $src $target
@@ -220,8 +254,7 @@ copy_and_mkdir()
 # Symfony2 project Harcore cache clearing
 sym-refresh(){
     proj_root=$1
-    if [ ! -d `dirname $proj_root` ]
-    then
+    if [ ! -d `dirname $proj_root` ] then
         $proj_root="."
     fi
 
@@ -249,12 +282,12 @@ function hgrep {
 function openMateProject { mate ~//Sites//$1//DEV/; }
 
 function ursync {
-        if ($1=="BLACKBOX") then
-             rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/;
-        else
-             echo $1;
-             # rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/
-        fi
+	if ($1=="BLACKBOX") then
+		rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/;
+	else
+		echo $1;
+		# rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/
+	fi
 }
 
 
