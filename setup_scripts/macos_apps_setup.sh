@@ -9,7 +9,7 @@ function brewcask() {
 }
 
 # dev-related programs
-brewcask atom
+brewcask vscode
 brew install homebrew/completions/apm-bash-completion
 brewcask intellij-idea
 brewcask dropbox
@@ -27,12 +27,5 @@ brewcask sketch
 # utils
 brewcask skype
 brewcask vlc
-brewcask cleanmymac
-brewcask macpaw-gemini
 brewcask spotify
-brewcask deezer
 
-# games
-brewcask steam
-# brewcask minecraft
-# brewcask openttd
