@@ -1,7 +1,7 @@
 #!/bin/bash
 # npm dependencies that I'm not likely to live without
 echo "# Installing Node global library ... ";
-npm install -g nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 npm install -g jshint
 npm install -g jsxhint
 npm install -g grunt-cli

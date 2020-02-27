@@ -1,23 +1,5 @@
 #!/usr/bin/env bash
 
-# Simple calculator
-function calc() {
-	local result="";
-	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-	#                       └─ default (when `--mathlib` is used) is 20
-	#
-	if [[ "$result" == *.* ]]; then
-		# improve the output for decimal numbers
-		printf "$result" |
-		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
-		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
-		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
-	else
-		printf "$result";
-	fi;
-	printf "\n";
-}
-
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
@@ -93,15 +75,6 @@ function dataurl() {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-# Create a git.io short URL
-function gitio() {
-	if [ -z "${1}" -o -z "${2}" ]; then
-		echo "Usage: \`gitio slug url\`";
-		return 1;
-	fi;
-	curl -i https://git.io/ -F "url=${2}" -F "code=${1}";
-}
-
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
 	local port="${1:-8000}";
@@ -129,16 +102,6 @@ function gz() {
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
-# Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
-function json() {
-	if [ -t 0 ]; then # argument
-		python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	else # pipe
-		python -mjson.tool | pygmentize -l javascript;
-	fi;
-}
-
 # Run `dig` and display the most useful info
 function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer;
@@ -146,30 +109,30 @@ function digga() {
 
 # UTF-8-encode a string of Unicode symbols
 function escape() {
-	printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
-	# print a newline unless we’re piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
-}
+		printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
 
 # Decode \x{ABCD}-style Unicode escape sequences
 function unidecode() {
-	perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
-	# print a newline unless we’re piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
-}
+		perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
 
 # Get a character’s Unicode code point
 function codepoint() {
-	perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
-	# print a newline unless we’re piping the output to another program
-	if [ -t 1 ]; then
-		echo ""; # newline
-	fi;
-}
+		perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
@@ -205,23 +168,24 @@ function getcertnames() {
 	fi;
 }
 
-# `s` with no arguments opens the current directory in Sublime Text, otherwise
-# opens the given location
-function s() {
-	if [ $# -eq 0 ]; then
-		subl .;
+# Normalize `open` across Linux, macOS, and Windows.
+# This is needed to make the `o` function (see below) cross-platform.
+if [ ! $(uname -s) = 'Darwin' ]; then
+	if grep -q Microsoft /proc/version; then
+		# Ubuntu on Windows using the Linux subsystem
+		alias open='explorer.exe';
 	else
-		subl "$@";
-	fi;
-}
+		alias open='xdg-open';
+	fi
+fi
 
-# `a` with no arguments opens the current directory in Atom Editor, otherwise
-# opens the given location
-function a() {
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+function o() {
 	if [ $# -eq 0 ]; then
-		atom .;
+		open .;
 	else
-		atom "$@";
+		open "$@";
 	fi;
 }
 
@@ -232,16 +196,6 @@ function v() {
 		vim .;
 	else
 		vim "$@";
-	fi;
-}
-
-# `o` with no arguments opens the current directory, otherwise opens the given
-# location
-function o() {
-	if [ $# -eq 0 ]; then
-		open .;
-	else
-		open "$@";
 	fi;
 }
 
@@ -260,22 +214,20 @@ function tre() {
 
 export_release_svn_report()
 {
-    if [ -z "$2" ]
-      then
-	grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html
+    if [ -z "$2" ] then
+		grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html
     else
-	grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html
+		grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html
     fi
 }
 
 svn_report()
 {
     # depends on grc svn.conf
-    if [ -z "$1" ]
-      then
-         grc --conf=conf.svn svn log -vl 20
+    if [ -z "$1" ] then
+        grc --conf=conf.svn svn log -vl 20
     else
-         grc --conf=conf.svn svn log -vr head:$1
+        grc --conf=conf.svn svn log -vr head:$1
     fi
 }
 
@@ -291,8 +243,7 @@ copy_and_mkdir()
     local src=$1
     local target=$2
 
-    if [ ! -d `dirname $target` ]
-    then
+    if [ ! -d `dirname $target` ] then
         mkdir -m 755 -p $(dirname $target)
     fi
     cp -vRfp $src $target
@@ -303,8 +254,7 @@ copy_and_mkdir()
 # Symfony2 project Harcore cache clearing
 sym-refresh(){
     proj_root=$1
-    if [ ! -d `dirname $proj_root` ]
-    then
+    if [ ! -d `dirname $proj_root` ] then
         $proj_root="."
     fi
 
@@ -332,12 +282,12 @@ function hgrep {
 function openMateProject { mate ~//Sites//$1//DEV/; }
 
 function ursync {
-        if ($1=="BLACKBOX") then
-             rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/;
-        else
-             echo $1;
-             # rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/
-        fi
+	if ($1=="BLACKBOX") then
+		rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/;
+	else
+		echo $1;
+		# rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/
+	fi
 }
 
 
