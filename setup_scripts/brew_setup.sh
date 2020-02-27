@@ -32,7 +32,6 @@ brew install findutils
 brew install gnu-sed --with-default-names
 # Install a modern version of Bash.
 brew install bash
-brew tap homebrew/versions
 brew install bash-completion2 # This might conflict with bash-completion if it has been previously installed
 
 # Switch to using brew-installed bash as default shell
@@ -56,11 +55,7 @@ brew install optipng
 brew install readline
 
 
-# Install RingoJS and Narwhal.
-# Note that the order in which these are installed is important;
-# see http://git.io/brew-narwhal-ringo.
-brew install ringojs
-brew install narwhal
+
 # Install GnuPG to enable PGP-signing commits.
 brew install gnupg
 
@@ -122,16 +117,8 @@ brew install ssh-copy-id
 brew install tree
 brew install vbindiff
 brew install zopfli
-brew install ant
-brew install mercurial
-brew install irssi
 brew install phantomjs
 brew install unrar
-brew install trash
 
 # Remove outdated versions from the cellar.
 brew cleanup
-
-# install brew completion
-brew install bash-completion
-brew tap homebrew/completions
