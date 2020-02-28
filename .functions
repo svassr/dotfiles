@@ -215,10 +215,10 @@ function tre() {
 export_release_svn_report()
 {
     if [ -z "$2" ] then
-		grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html
+		grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html;
     else
-		grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html
-    fi
+		grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html;
+    fi;
 }
 
 svn_report()
@@ -228,7 +228,7 @@ svn_report()
         grc --conf=conf.svn svn log -vl 20
     else
         grc --conf=conf.svn svn log -vr head:$1
-    fi
+    fi;
 }
 
 
