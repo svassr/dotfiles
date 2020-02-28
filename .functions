@@ -218,18 +218,19 @@ get_repo_revision(){
     # echo $revision
 }
 
-copy_and_mkdir()
-{
-    local src=$1
-    local target=$2
+## @TOFIX: syntax error to fixed
+# copy_and_mkdir()
+# {
+#     local src=$1
+#     local target=$2
 
-    if [ ! -d `dirname $target` ] then
-        mkdir -m 755 -p ${dirname $target}
-    fi
-    cp -vRfp $src $target
+#     if [ ! -d `dirname $target` ] then
+# 	    mkdir -m 755 -p $(dirname $target)
+#     fi
+#     cp -vRfp $src $target
 
-    # exit 0
-}
+#     # exit 0
+# }
 
 # Symfony2 project Harcore cache clearing
 sym-refresh(){
