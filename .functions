@@ -212,26 +212,6 @@ function tre() {
 # ---------------------------------------------------
 # Personnal functions
 
-export_release_svn_report()
-{
-    if [ -z "$2" ] then
-		grc --conf=conf.svn svn log -vl 20 | ansi2html --bg=dark > ./web/release/$1.html;
-    else
-		grc --conf=conf.svn svn log -vr head:$2 | ansi2html --bg=dark > ./web/release/$1.html;
-    fi;
-}
-
-svn_report()
-{
-    # depends on grc svn.conf
-    if [ -z "$1" ] then
-        grc --conf=conf.svn svn log -vl 20
-    else
-        grc --conf=conf.svn svn log -vr head:$1
-    fi;
-}
-
-
 get_repo_revision(){
     local url=$1
     eval "svn info $url | grep Revision | awk '{print $2}'"
@@ -276,14 +256,12 @@ sym-refresh(){
 
 
 function hgrep {
-   history | grep $1 
+   history | grep $1
 }
 
-function openMateProject { mate ~//Sites//$1//DEV/; }
-
-function ursync {
+function ursync() {
 	if ($1=="BLACKBOX") then
-		rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/;
+		rsync -urv /Users//$2/Projects/* /Volumes/BLACKBOX/Projects/;
 	else
 		echo $1;
 		# rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/
