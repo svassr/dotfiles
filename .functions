@@ -224,8 +224,8 @@ copy_and_mkdir()
     local target=$2
 
     if [ ! -d `dirname $target` ] then
-        mkdir -m 755 -p $(dirname $target)
-    fi
+        mkdir -m 755 -p $(dirname $target);
+    fi;
     cp -vRfp $src $target
 
     # exit 0
