@@ -233,26 +233,27 @@ get_repo_revision(){
 # }
 
 # Symfony2 project Harcore cache clearing
-sym-refresh(){
-    proj_root=$1
-    if [ ! -d `dirname $proj_root` ] then
-        $proj_root="."
-    fi
-
-    cd $proj_root
-    app/console cache:clear
-    sudo chmod -Rv 777 app/cache
-    sudo chown dev1:dev1 -Rv app/cache
-    sudo chmod -Rv 777 app/logs
-    sudo chown dev1:dev1 -Rv app/logs
-    # rm -rv ./web/static/css/
-    # rm -rv ./web/static/js/
-    # mkdir -v web/static/css
-    # mkdir -v web/static/js
-    sudo chown dev1:dev1 -Rv web/static
-    sudo chmod 777 -Rv web/static
-    # sudo php app/console assetic:dump --env=dev --no-debug
-}
+## @TOFIX syntax error to be fixed
+#sym-refresh(){
+#    proj_root=$1
+#    if [ ! -d `dirname $proj_root` ] then
+#        $proj_root=".";
+#    fi
+#
+#    cd $proj_root
+#    app/console cache:clear
+#    sudo chmod -Rv 777 app/cache
+#    sudo chown dev1:dev1 -Rv app/cache
+#    sudo chmod -Rv 777 app/logs
+#    sudo chown dev1:dev1 -Rv app/logs
+#    # rm -rv ./web/static/css/
+#    # rm -rv ./web/static/js/
+#    # mkdir -v web/static/css
+#    # mkdir -v web/static/js
+#    sudo chown dev1:dev1 -Rv web/static
+#    sudo chmod 777 -Rv web/static
+#    # sudo php app/console assetic:dump --env=dev --no-debug
+#}
 
 
 
@@ -322,11 +323,11 @@ function setup_python_mysqldb(){
 # are we an interactive shell?
 # if [ "$PS1" ]; then
 #     if [ -x /usr/bin/tput ]; then
-#       if [ "x`tput kbs`" != "x" ]; then 
+#       if [ "x`tput kbs`" != "x" ]; then
 # 	# We can't do this with "dumb" terminal
 #         stty erase `tput kbs`
 #       elif [ -x /usr/bin/wc ]; then
-#         if [ "`tput kbs|wc -c `" -gt 0 ]; then 
+#         if [ "`tput kbs|wc -c `" -gt 0 ]; then
 # 	# We can't do this with "dumb" terminal
 #           stty erase `tput kbs`
 #         fi
@@ -340,7 +341,7 @@ function setup_python_mysqldb(){
 # 	    ;;
 #     esac
 #     [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\h \W]\\$ "
-#     
+#
 #     if [ "x$SHLVL" != "x1" ]; then # We're not a login shell
 #         for i in /etc/profile.d/*.sh; do
 # 	    if [ -x $i ]; then
@@ -350,3 +351,12 @@ function setup_python_mysqldb(){
 #     fi
 # fi
 
+function errorlog(){
+  DOMAIN=$1
+  grc tail -f /private/etc/apache2/${DOMAIN}-error_log
+}
+
+function accesslog(){
+  DOMAIN=$1
+  grc tail -f /private/etc/apache2/${DOMAIN}-access_log
+}

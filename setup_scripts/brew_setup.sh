@@ -66,6 +66,7 @@ brew install openssh
 brew install screen
 brew install php
 brew install gmp
+brew install grc
 
 # Install font tools.
 brew tap bramstein/webfonttools
