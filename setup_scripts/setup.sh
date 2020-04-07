@@ -21,8 +21,6 @@ $WORKSPACE_PATH/dotfiles/setup_scripts/vim_setup.sh
 # dev-related programs - install rvm
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
-# dev-related programs - install meteor
-\curl https://install.meteor.com/ | sh
 
 # install native Apps: Browsers, dev tools and utils
 $WORKSPACE_PATH/dotfiles/setup_scripts/macos_apps_setup.sh
