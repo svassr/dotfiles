@@ -25,6 +25,8 @@ $WORKSPACE_PATH/dotfiles/setup_scripts/vim_setup.sh
 # install native Apps: Browsers, dev tools and utils
 $WORKSPACE_PATH/dotfiles/setup_scripts/macos_apps_setup.sh
 
+$WORKSPACE_PATH/dotfiles/setup_scripts/apm-install.sh
+
 echo "Almost Done. Here are a few apps and tools that require root access. You can also later run ./root_apps.sh";
 read -p "Would you like to continue? (y/n) " -n 1
 echo "";
