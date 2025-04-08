@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit;
 
 git pull origin master;
 
@@ -12,11 +12,11 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	source ~/.bash_profile
+	source "$(dirname "${BASH_SOURCE[0]}")"/.bash_profile;
 }
 
 echo "# dotfiles SETUP #";
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [ "$1" == "--force" π|| "$1" == "-f" ]; then
 	doIt;
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
