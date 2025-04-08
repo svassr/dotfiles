@@ -1,4 +1,4 @@
-# Mathias’s dotfiles
+# Stephane’s dotfiles
 
 ![Screenshot of my shell prompt](https://i.imgur.com/EkEtphC.png)
 
@@ -93,13 +93,11 @@ Some of the functionality of these dotfiles depends on formulae installed by `br
 ## Feedback
 
 Suggestions/improvements
-[welcome](https://github.com/mathiasbynens/dotfiles/issues)!
+[welcome](https://github.com/svassr/dotfiles/issues)!
 
-## Author
+## Original Author
 
-| [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
-|---|
-| [Mathias Bynens](https://mathiasbynens.be/) |
+[Mathias Bynens](https://mathiasbynens.be/)
 
 ## Thanks to…
 
