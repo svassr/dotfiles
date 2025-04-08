@@ -18,3 +18,5 @@ svn-commit.tmp
 
 # privacy settings that shouldnt be commited
 .extra
+
+.idea
