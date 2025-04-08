@@ -107,6 +107,33 @@ function digga() {
 	dig +nocmd "$1" any +multiline +noall +answer;
 }
 
+# UTF-8-encode a string of Unicode symbols
+function escape() {
+		printf "\\\x%s" $(printf "$@" | xxd -p -c1 -u);
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
+
+# Decode \x{ABCD}-style Unicode escape sequences
+function unidecode() {
+		perl -e "binmode(STDOUT, ':utf8'); print \"$@\"";
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
+
+# Get a character’s Unicode code point
+function codepoint() {
+		perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
+		# print a newline unless we’re piping the output to another program
+		if [ -t 1 ]; then
+			echo ""; # newline
+			fi;
+	}
+
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
@@ -162,10 +189,174 @@ function o() {
 	fi;
 }
 
+# `v` with no arguments opens the current directory in Vim, otherwise opens the
+# given location
+function v() {
+	if [ $# -eq 0 ]; then
+		vim .;
+	else
+		vim "$@";
+	fi;
+}
+
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
+
+
+# ---------------------------------------------------
+# Personnal functions
+
+get_repo_revision(){
+    local url=$1
+    eval "svn info $url | grep Revision | awk '{print $2}'"
+    # echo $revision
+}
+
+## @TOFIX: syntax error to fixed
+# copy_and_mkdir()
+# {
+#     local src=$1
+#     local target=$2
+
+#     if [ ! -d `dirname $target` ] then
+# 	    mkdir -m 755 -p $(dirname $target)
+#     fi
+#     cp -vRfp $src $target
+
+#     # exit 0
+# }
+
+# Symfony2 project Harcore cache clearing
+## @TOFIX syntax error to be fixed
+#sym-refresh(){
+#    proj_root=$1
+#    if [ ! -d `dirname $proj_root` ] then
+#        $proj_root=".";
+#    fi
+#
+#    cd $proj_root
+#    app/console cache:clear
+#    sudo chmod -Rv 777 app/cache
+#    sudo chown dev1:dev1 -Rv app/cache
+#    sudo chmod -Rv 777 app/logs
+#    sudo chown dev1:dev1 -Rv app/logs
+#    # rm -rv ./web/static/css/
+#    # rm -rv ./web/static/js/
+#    # mkdir -v web/static/css
+#    # mkdir -v web/static/js
+#    sudo chown dev1:dev1 -Rv web/static
+#    sudo chmod 777 -Rv web/static
+#    # sudo php app/console assetic:dump --env=dev --no-debug
+#}
+
+
+
+function hgrep {
+   history | grep $1
+}
+
+function ursync() {
+	if ($1=="BLACKBOX") then
+		rsync -urv /Users//$2/Projects/* /Volumes/BLACKBOX/Projects/;
+	else
+		echo $1;
+		# rsync -urv /Users/stephanevasseur/Sites/* /Volumes/BLACKBOX/Projets/
+	fi
+}
+
+
+function colorpicker {
+	# Show all the colours of the rainbow, should be run under bash
+	for STYLE in 0 1 2 3 4 5 6 7; do
+	  for FG in 30 31 32 33 34 35 36 37; do
+	    for BG in 40 41 42 43 44 45 46 47; do
+	      CTRL="\033[${STYLE};${FG};${BG}m"
+	      echo -en "${CTRL}"
+	      echo -n "${STYLE};${FG};${BG}"
+	      echo -en "\033[0m"
+	    done
+	    echo ""
+	  done
+	  echo ""
+	done
+	# Reset
+	echo -e "\033[0m"
+}
+
+# PYTHON PROJECT
+function setup_python_mysqldb(){
+  # cd /opt/local/var/run/mysql5/
+  # cd MySQL-python-1.2.3
+  DIRECTORY=$1
+  # python setup.py install
+  # sudo port install MySQL-python
+  sudo port install MySQLDb
+  sudo ln -s /usr/local/mysql/bin/* /usr/bin
+  cd ${DIRECTORY}
+  python setup.py install
+  # which mysql_config5
+  sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /opt/local/var/run/mysql5/mysql.sock
+  sudo ln -s /opt/local/bin/mysql_config5 /opt/local/bin/mysql_config
+  python setup.py install
+  echo "tcheck mysql is running"
+  sudo /opt/local/share/mysql5/mysql/mysql.server start
+  sudo mysqladmin5 -u root -p ping
+}
+
+# RUBY / RAILS ENVIRONMENT
+
+# sudo ln -s /usr/bin/gem1.8   /usr/bin/gem
+# sudo ln -s /usr/bin/gem1.8.8 /usr/bin/gem
+
+
+# /etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# are we an interactive shell?
+# if [ "$PS1" ]; then
+#     if [ -x /usr/bin/tput ]; then
+#       if [ "x`tput kbs`" != "x" ]; then
+# 	# We can't do this with "dumb" terminal
+#         stty erase `tput kbs`
+#       elif [ -x /usr/bin/wc ]; then
+#         if [ "`tput kbs|wc -c `" -gt 0 ]; then
+# 	# We can't do this with "dumb" terminal
+#           stty erase `tput kbs`
+#         fi
+#       fi
+#     fi
+#     case $TERM in
+# 	xterm*)
+# 	    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+# 	    ;;
+# 	*)
+# 	    ;;
+#     esac
+#     [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\h \W]\\$ "
+#
+#     if [ "x$SHLVL" != "x1" ]; then # We're not a login shell
+#         for i in /etc/profile.d/*.sh; do
+# 	    if [ -x $i ]; then
+# 	        . $i
+# 	    fi
+# 	done
+#     fi
+# fi
+
+function errorlog(){
+  DOMAIN=$1
+  grc tail -f /private/etc/apache2/${DOMAIN}-error_log
+}
+
+function accesslog(){
+  DOMAIN=$1
+  grc tail -f /private/etc/apache2/${DOMAIN}-access_log
 }

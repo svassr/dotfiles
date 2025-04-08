@@ -14,6 +14,8 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
+alias h="history"
+alias j="jobs"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -142,7 +144,85 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec ${SHELL} -l"
+alias reload="exec $SHELL -l"
+
+# svassr personal aliases
+
+# navigation
+alias www="cd /var/www"
+alias projects="cd ~/Projects"
+alias sites="cd ~/Sites"
+
+# devD
+alias phpcs-symfony2="phpcs --config-set default_standard Symfony2"
+# alias compass="/var/lib/gems/1.8/bin/compass"
+alias ansi2html="/home/dev1/library/bash/pixelb/scripts/scripts/ansi2html.sh"
+alias ansi_colours="/home/dev1/library/bash/pixelb/scripts/scripts/ansi_colours.sh"
+alias release_report="export_release_svn_report"
+
+# SVN
+# if grc -help > 0; then
+#	alias svnc="grc --conf=conf.svn svn"
+# else
+	alias svn="~/bin/svn-color/svn-color.py"
+	alias svnc="svn"
+# fi
+alias svnlog="svnc log --stop-on-copy -v"
+alias svnstatus="svnc status"
+alias svnst="svnc status"
+alias svnstat="svnc status"
+alias svndiff="svnc diff"
+alias svncommit="svnc ci"
+alias svnci="svnc ci"
+alias svnup="svn up"
+
+function svnadd(){
+  svn add "$@";
+  svn ci "$@" -m 'ajout d un nouveau fichier : "$@" ';
+}
+
+function svndel(){
+  svn del "$@";
+  svn ci "$@" -m 'suppresion d une fichier inutilise : "$@" '
+}
+
+# GIT
+
+# Undo a `git push`
+alias gco="git checkout"
+alias gcommit='git commit -m'
+alias glog='git log --stat'
+alias gst='git status'
+alias gstat='git status'
+alias gpull='git pull'
+alias gp='git pull'
+alias undopush="git push -f origin HEAD^:master"
+alias gdiff="git diff"
+
+
+# MISC
+alias cpr="copy_and_mkdir"
+# alias ll="ls -la --color=auto --group-directories-first"
+alias ll="ls -laG"
+alias df='df -lh'
+alias rm="rm -i"
+alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
+alias ports='netstat -nape --inet'
+alias hm="history | more"
+alias gi="grep -i"
+alias tailf='grc tail -f'
+alias hgrep='history | grep '
+alias llog='sudo -i locate /var/log/apache2/'
+
+
+alias ql="qlmanage -p"
+# alias mproj="openMateProject \!*"
+# alias mysql_config="/Applications/MAMP/Library/bin/mysql_config"
+alias update_blackbox="rsync -urv ~/Projects/* /Volumes/BLACKBOX/Projets/;"
+
+function brewcask() {
+    brew cask install "${@}" 2> /dev/null
+}
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'

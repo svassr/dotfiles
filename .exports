@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Make vim the default editor
+export EDITOR="vim"
+export SVN_EDITOR="vim"
+
 # Make vim the default editor.
 export EDITOR='vim';
 

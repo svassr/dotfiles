@@ -1,8 +1,90 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+" Set vundle and Bundles
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+set background=dark
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+" plugin not on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'rking/ag.vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'bling/vim-airline'
+Plugin 'majutsushi/tagbar'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'pangloss/vim-javascript'
+
+" Rarely used Plugin
+" Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-rails'
+" Plugin 'Lokaltog/vim-powerline'
+" Plugin 'kana/vim-textobj-user'
+" Plugin 'nelstrom/vim-textobj-rubyblock'
+" Plugin 'slim-template/vim-slim'
+" Plugin 'edsone/vim-matchit'
+" Plugin 'henrick/vim-indexed-search'
+" Plugin 'lokaltog/vim-easymotion'
+Plugin 'vim-scripts/tComment'
+" Plugin 'tpope/vim-repeat'
+" Plugin 'tpop/vim-abolish'
+" Plugin 'xolox/vim-session'
+" Plugin 'xolox/vim-misc'
+" Plugin 'godlygeek/tabular'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Remove backup and swap
+set noswapfile
+set nobackup
+set nowritebackup
+
+" reload file automatically when modifed outside vim and not  modified in vim
+set autoread
+
+"set syntax highlighting theme. Originaly used the molokai theme (originally created for TextMate by Wimer Hazenberg)
+colorscheme monokai
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
@@ -47,7 +129,7 @@ syntax on
 " Highlight current line
 set cursorline
 " Make tabs as wide as two spaces
-set tabstop=2
+set tabstop=4
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -80,6 +162,7 @@ if exists("&relativenumber")
 	set relativenumber
 	au BufReadPost * set relativenumber
 endif
+
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -100,7 +183,17 @@ if has("autocmd")
 	" Enable file type detection
 	filetype on
 	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+	autocmd BufNewFile,BufRead *.json,*.js.tmp setfiletype json syntax=javascript
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+
+au BufRead,BufNewFile *.twig,*.html.twig,*.html.twig.tmp,*.html.tmp,*.ejs set filetype=htmljinja
+au BufRead,BufNewFile *.php.tmp set filetype=php
+au BufRead,BufNewFile *.css.tmp,*.scss.tmp set filetype=css
+au BufRead,BufNewFile *.svn,*.svnlog set filetype=svnlog
+au BufRead,BufNewFile *diff.svn,*.blame.svn,*.svndiff,*.svnblame set filetype=htmljinja
+
+au InsertLeave * hi Cursor guibg=yellow
+au InsertEnter * hi Cursor guibg=green
